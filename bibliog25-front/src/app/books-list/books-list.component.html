@@ -1,0 +1,41 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Editorial</th>
+            <th scope="col">Lenguaje</th>
+            <th scope="col">Paginas</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Ejemplares</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Disponibles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books">
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.date}}</td>
+            <td>{{ book.category }}</td>
+            <td>{{ book.edit }}</td>
+            <td>{{ book.lang}}</td>
+            <td>{{ book.pages }}</td>
+            <td>{{ book.description }}</td>
+            <td>{{ book.ejemplares}}</td>
+            <td>{{ book.stock }}</td>
+            <td>{{ book.available }}</td>
+            <td><a routerLink="/addbook" class="btn btn-success">Editar</a></td>
+            <td><a (click)="deleteBook(book.id)" class="btn btn-danger">Borrar</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
