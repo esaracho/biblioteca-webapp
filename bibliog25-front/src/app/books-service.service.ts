@@ -25,5 +25,9 @@ export class BooksService {
   public delete(bid: String) {
     return this.http.delete(this.usersUrl+'/'+bid);
   }
+
+  public edit(bid: String, book: Books) {
+    return this.http.put(this.usersUrl+'/'+bid, book);
+  }
 }
 
