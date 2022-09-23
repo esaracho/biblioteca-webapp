@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { Books } from '../books';
 import { BooksService } from '../books-service.service';
 
 @Component({
-  selector: 'app-new-book',
-  templateUrl: './new-book.component.html',
-  styleUrls: ['./new-book.component.css']
+  selector: 'app-edit-book',
+  templateUrl: './edit-book.component.html',
+  styleUrls: ['./edit-book.component.css']
 })
-export class NewBookComponent {
+export class EditBookComponent {
 
   book!: Books;
 
@@ -19,7 +19,8 @@ export class NewBookComponent {
     }
 
   onSubmit() {
-    this.booksService.save(this.book).subscribe(result => this.gotoBooksList());
+    this.book.id = history.state.data;
+    this.booksService.edit(history.state.data, this.book).subscribe(result => this.gotoBooksList());
   }
 
   gotoBooksList() {
@@ -27,4 +28,3 @@ export class NewBookComponent {
   }
 
 }
-

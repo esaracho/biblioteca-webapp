@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Books } from '../books';
 import { BooksService } from '../books-service.service';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 
@@ -9,16 +9,15 @@ import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router'
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
   styleUrls: ['./books-list.component.css'],
-  providers: [BooksService]
 })
+
 export class BooksListComponent implements OnInit {
 
   books!: Books[];
-  book!: Books;
 
 
-  constructor(private route: ActivatedRoute, 
-    private router: Router, private booksService: BooksService) { }
+  constructor(private router: Router,
+  private booksService: BooksService) { }
 
   ngOnInit(): void {
     this.booksService.findAll().subscribe(data => {
@@ -26,19 +25,17 @@ export class BooksListComponent implements OnInit {
     })
   }
 
+  editBook(id: number): void {
+    this.router.navigate(['/editbook'], {state: {data: id}});
+}
+
   deleteBook(bookID: number){
   this.booksService.delete(bookID.toString()).subscribe(result => this.refreshList());
   }
 
   refreshList() {
-    this.router.navigate(['/books']);
     this.ngOnInit();
   }
- //deleteBook(book: Books) {
- //   this.booksService.delete(book).subscribe(response => {
-//
-//      this.books = this.books.filter(item => item.id !== this.books.id);
- // }
 
 }
 

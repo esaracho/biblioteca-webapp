@@ -1,0 +1,121 @@
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+        <div class="form-group">
+          <label for="title">Titulo</label>
+          <input type="text" [(ngModel)]="book.title" 
+            class="form-control" 
+            id="title" 
+            name="title" 
+            placeholder="Enter your name"
+            required #title="ngModel">
+        </div>
+        <div [hidden]="!title.pristine" class="alert alert-danger">Name is required</div>
+        <div class="form-group">
+          <label for="date">Fecha</label>
+          <input type="text" [(ngModel)]="book.date" 
+            class="form-control" 
+            id="date" 
+            name="date" 
+            placeholder="Enter your email address"
+            required #date="ngModel">
+          <div [hidden]="!date.pristine" class="alert alert-danger">Email is required</div>
+        </div>
+        <div class="form-group">
+            <label for="author">Autor</label>
+            <input type="text" [(ngModel)]="book.author" 
+              class="form-control" 
+              id="author" 
+              name="author" 
+              placeholder="Enter your name"
+              required #author="ngModel">
+          </div>
+          <div [hidden]="!author.pristine" class="alert alert-danger">Name is required</div>
+          <div class="form-group">
+            <label for="category">Categoria</label>
+            <input type="text" [(ngModel)]="book.category" 
+              class="form-control" 
+              id="category" 
+              name="category" 
+              placeholder="Enter your email address"
+              required #category="ngModel">
+            <div [hidden]="!category.pristine" class="alert alert-danger">Email is required</div>
+          </div>
+          <div class="form-group">
+            <label for="edit">Editorial</label>
+            <input type="text" [(ngModel)]="book.edit" 
+              class="form-control" 
+              id="edit" 
+              name="edit" 
+              placeholder="Enter your name"
+              required #edit="ngModel">
+          </div>
+          <div [hidden]="!edit.pristine" class="alert alert-danger">Name is required</div>
+          <div class="form-group">
+            <label for="lang">Idioma</label>
+            <input type="text" [(ngModel)]="book.lang" 
+              class="form-control" 
+              id="lang" 
+              name="lang" 
+              placeholder="Enter your email address"
+              required #lang="ngModel">
+            <div [hidden]="!lang.pristine" class="alert alert-danger">Email is required</div>
+          </div>
+          <div class="form-group">
+            <label for="pages">Paginas</label>
+            <input type="text" [(ngModel)]="book.pages" 
+              class="form-control" 
+              id="pages" 
+              name="pages" 
+              placeholder="Enter your name"
+              required #pages="ngModel">
+          </div>
+          <div [hidden]="!pages.pristine" class="alert alert-danger">Name is required</div>
+          <div class="form-group">
+            <label for="description">Descripcion</label>
+            <input type="text" [(ngModel)]="book.description" 
+              class="form-control" 
+              id="description" 
+              name="description" 
+              placeholder="Enter your email address"
+              required #description="ngModel">
+            <div [hidden]="!description.pristine" class="alert alert-danger">Email is required</div>
+          </div>
+          <div class="form-group">
+            <label for="ejemplares">Ejemplares</label>
+            <input type="text" [(ngModel)]="book.ejemplares" 
+              class="form-control" 
+              id="ejemplares" 
+              name="ejemplares" 
+              placeholder="Enter your name"
+              required #ejemplares="ngModel">
+          </div>
+          <div [hidden]="!ejemplares.pristine" class="alert alert-danger">Name is required</div>
+          <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="text" [(ngModel)]="book.stock" 
+              class="form-control" 
+              id="stock" 
+              name="stock" 
+              placeholder="Enter your email address"
+              required #stock="ngModel">
+            <div [hidden]="!stock.pristine" class="alert alert-danger">Email is required</div>
+          </div>
+          <div class="form-group">
+            <label for="available">Disponibles</label>
+            <input type="text" [(ngModel)]="book.available" 
+              class="form-control" 
+              id="available" 
+              name="available" 
+              placeholder="Enter your name"
+              required #available="ngModel">
+          </div>
+
+
+        <button type="submit" [disabled]="!bookForm.form.valid" 
+          class="btn btn-info">Submit</button>
+      </form>
+    </div>
+  </div>
+
+
