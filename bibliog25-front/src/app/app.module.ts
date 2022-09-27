@@ -6,16 +6,23 @@ import { AppComponent } from './app.component';
 import { BooksListComponent } from './books-list/books-list.component';
 import { NewBookComponent } from './new-book/new-book.component';
 import { BooksService } from './books-service.service';
+import { UsersService } from './users-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { NewUserComponent } from './new-user/new-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksListComponent,
     NewBookComponent,
-    EditBookComponent
+    EditBookComponent,
+    UsersListComponent,
+    NewUserComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +30,7 @@ import { EditBookComponent } from './edit-book/edit-book.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [BooksService],
+  providers: [BooksService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

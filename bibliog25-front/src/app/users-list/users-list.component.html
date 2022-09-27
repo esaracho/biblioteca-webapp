@@ -1,0 +1,33 @@
+<div class="card my-5">
+    <div class="card-body">
+      <h4>Usuarios</h4>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido P</th>
+            <th scope="col">Apellido M</th>
+            <th scope="col">Domicilio</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Sanciones</th>
+            <th scope="col">Monto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.last_name_p }}</td>
+            <td>{{ user.last_name_m }}</td>
+            <td>{{ user.domicilio }}</td>
+            <td>{{ user.tel }}</td>
+            <td>{{ user.sanctions }}</td>
+            <td>{{ user.sanc_money }}</td>
+            <td><a (click)="editUser(user.id)" class="btn btn-success">Editar</a></td>
+            <td><a (click)="deleteUser(user.id)" class="btn btn-danger">Borrar</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
