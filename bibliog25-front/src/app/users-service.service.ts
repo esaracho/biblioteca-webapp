@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Users } from './users';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root'})
 export class UsersService {
 
   private usersUrl: string;

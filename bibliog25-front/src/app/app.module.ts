@@ -7,12 +7,14 @@ import { BooksListComponent } from './books-list/books-list.component';
 import { NewBookComponent } from './new-book/new-book.component';
 import { BooksService } from './books-service.service';
 import { UsersService } from './users-service.service';
+import { LendingsService } from './lendings-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { LendingsListComponent } from './lendings-list/lendings-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     EditBookComponent,
     UsersListComponent,
     NewUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    LendingsListComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [BooksService, UsersService],
+  providers: [BooksService, UsersService, LendingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
