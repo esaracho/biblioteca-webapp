@@ -1,0 +1,63 @@
+<div class="card my-5">
+    <div class="card-body">
+    <h4>Nuevo usuario</h4>
+      <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" [(ngModel)]="user.name" 
+            class="form-control" 
+            id="name" 
+            name="name" 
+            placeholder="Enter your name"
+            required #title="ngModel">
+        </div>
+        <div [hidden]="!title.pristine" class="alert alert-danger">Name is required</div>
+        <div class="form-group">
+          <label for="apellidop">Apellido Paterno</label>
+          <input type="text" [(ngModel)]="user.last_name_p" 
+            class="form-control" 
+            id="apellidop"
+            name="apellidop" 
+            placeholder="Enter your email address"
+            required #date="ngModel">
+          <div [hidden]="!date.pristine" class="alert alert-danger">Email is required</div>
+        </div>
+        <div class="form-group">
+            <label for="apellidom">Apellido Materno</label>
+            <input type="text" [(ngModel)]="user.last_name_m" 
+              class="form-control" 
+              id="apellidom" 
+              name="apellidom" 
+              placeholder="Enter your name"
+              required #author="ngModel">
+          </div>
+          <div [hidden]="!author.pristine" class="alert alert-danger">Name is required</div>
+          <div class="form-group">
+            <label for="domicilio">Domicilio</label>
+            <input type="text" [(ngModel)]="user.domicilio" 
+              class="form-control" 
+              id="domicilio" 
+              name="domicilio" 
+              placeholder="Enter your email address"
+              required #category="ngModel">
+            <div [hidden]="!category.pristine" class="alert alert-danger">Email is required</div>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" [(ngModel)]="user.tel" 
+              class="form-control" 
+              id="telefono" 
+              name="telefono" 
+              placeholder="Enter your name"
+              required #edit="ngModel">
+          </div>
+          <div [hidden]="!edit.pristine" class="alert alert-danger">Name is required</div>
+         
+
+        <button type="submit" [disabled]="!userForm.form.valid" 
+          class="btn btn-info">Submit</button>
+      </form>
+    </div>
+  </div>
+
+

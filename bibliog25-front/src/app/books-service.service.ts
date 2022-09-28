@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class BooksService {
 
   private usersUrl: string;
