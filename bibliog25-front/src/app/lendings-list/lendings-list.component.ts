@@ -120,13 +120,13 @@ export class LendingsListComponent implements OnInit {
 
     })
 
-    let dateAct = new Date("2022-10-24");
+    let dateAct = new Date("2022-10-25");
     let dateRet = new Date(Date.parse(prestSel.date_return.toString()))
-    let difDias = this.getDayDiff(dateAct, dateRet)
+    let difDias = this.getDayDiff(dateRet, dateAct)
+
     if(difDias > 0){
       let cost_sanc = 5;
-      let money = cost_sanc * (difDias);
-      console.log(money)
+      let money = cost_sanc * difDias;
       userSel.sanc_money = userSel.sanc_money + money;
       userSel.sanctions = userSel.sanctions + 1;
       this.usersService.edit(userSel.id.toString(), userSel).subscribe()
@@ -152,13 +152,11 @@ export class LendingsListComponent implements OnInit {
     })
     
   }
-  //Devuelve dias entre dos fechas
-  getDayDiff(startDate: Date, endDate: Date): number {
+  //Devuelve dias entre dos fechas (Dia de devolución y dia actual)
+  getDayDiff(retDate: Date, actDate: Date): number {
     const msInDay = 24 * 60 * 60 * 1000;
-  
-    // 👇️ explicitly calling getTime()
     return Math.round(
-      Math.abs(endDate.getTime() - startDate.getTime()) / msInDay,
+      (actDate.getTime() - retDate.getTime()) / msInDay,
     );
   }  
 
