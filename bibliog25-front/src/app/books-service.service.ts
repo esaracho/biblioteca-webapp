@@ -28,6 +28,7 @@ export class BooksService {
 
   public edit(bid: String, book: Books) {
     return this.http.put(this.usersUrl+'/'+bid, book);
+
   }
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, resolveForwardRef } from '@angular/core';
+import { Component, OnInit, resolveForwardRef, ɵsetAllowDuplicateNgModuleIdsForTest } from '@angular/core';
 import { Lendings } from '../lendings';
 import { LendingsService } from '../lendings-service.service';
 import { Users } from '../users';
@@ -19,16 +19,18 @@ export class LendingsListComponent implements OnInit {
   prestamo!: Lendings;
   users!: Users[];
   books!: Books[];
+  bookSelect!: Books;
   booksDisp!: Books[];
-  fecha!: Date;
-  fechaRet!: Date;
+  //fecha!: Date;
+  //fechaRet!: Date;
 
 
   constructor(private lendingsService: LendingsService,
     private usersService: UsersService, private booksService: BooksService) {
       this.prestamo = new Lendings();
-      this.fecha = new Date();
-      this.fechaRet = new Date();
+      this.bookSelect = new Books();
+   //   this.fecha = new Date();
+   //   this.fechaRet = new Date();
      }
 
   ngOnInit(): void {
@@ -36,8 +38,7 @@ export class LendingsListComponent implements OnInit {
       this.users = data;
     })
     
- 
-    this.loadBooksAvail()
+     this.loadBooksAvail()
 
     this.lendingsService.findAll().subscribe(data => {
       this.prestamos = data;
@@ -45,10 +46,21 @@ export class LendingsListComponent implements OnInit {
   }
 
   onSubmit() {
-    this.prestamo.date_out = this.fecha.toString();
-    this.fechaRet = this.addDays(this.fecha, 15);
-    this.prestamo.date_return = this.fechaRet.toString();
+    let fechaAct = new Date()
+    this.prestamo.date_out = fechaAct.toString()//this.fecha.toString();
+    let fechaRet = this.addDays(fechaAct, 15);
+    this.prestamo.date_return = fechaRet.toString();
     this.lendingsService.save(this.prestamo).subscribe(result => this.refreshList());
+    //En el libro seleccionado en el prestamo se le resta 1 a la propiedad available en la tabla
+    this.bookSelect = this.restAvail(this.prestamo.book_id)
+    this.booksService.edit(this.prestamo.book_id.toString(), this.bookSelect).subscribe();
+  }
+
+  returnBook(prestID: number, bookID: number){
+    this.bookSelect = this.addAvail(bookID)
+    this.booksService.edit(bookID.toString(), this.bookSelect).subscribe();
+    this.sanction(prestID);
+    this.lendingsService.delete(prestID.toString()).subscribe(result => this.refreshList());
   }
 
   //Agrega los 15 dias de prestamo a la fecha de devolucion
@@ -57,7 +69,74 @@ export class LendingsListComponent implements OnInit {
     return date;
   }
 
+  //Método para restar libro disponible en la tabla al momento del préstamo
+  private restAvail(id: number): Books{
 
+    this.loadBooksAvail();
+    let bookRet = new Books();
+    this.books.forEach((book) => {
+      if(book.id == id){
+
+         bookRet = book;
+
+      }
+
+    })
+    bookRet.available = bookRet.available - 1;
+    return bookRet;
+  }
+
+  //Método para sumar libro disponible en la tabla al momento de la devolución
+  private addAvail(id: number): Books {
+
+    this.loadBooksAvail();
+    let bookRet = new Books();
+    this.books.forEach((book) => {
+      if(book.id == id){
+         bookRet = book;
+
+      }
+
+    })
+    bookRet.available = bookRet.available + 1;
+    return bookRet;
+  }
+
+  //Método que verifica la entrega a destiempo, calcula la sanció y lo inserta en la tabla users
+  private sanction(idPrest: number){
+
+    let prestSel = new Lendings();
+    let userSel = new Users();
+    this.prestamos.forEach((presta) => {
+      if(presta.id == idPrest) {
+        prestSel = presta;
+      }
+    })
+
+    this.users.forEach((user) => {
+      if(user.id == prestSel.user_id) {
+        userSel = user;
+      }
+
+    })
+
+    let dateAct = new Date("2022-10-24");
+    let dateRet = new Date(Date.parse(prestSel.date_return.toString()))
+    let difDias = this.getDayDiff(dateAct, dateRet)
+    if(difDias > 0){
+      let cost_sanc = 5;
+      let money = cost_sanc * (difDias);
+      console.log(money)
+      userSel.sanc_money = userSel.sanc_money + money;
+      userSel.sanctions = userSel.sanctions + 1;
+      this.usersService.edit(userSel.id.toString(), userSel).subscribe()
+    }
+
+    
+
+  }
+
+  //Genera un array de objetos de los libros que tienen una disponibilidad mayor a cero para ser mostrada en la selección del libro a retirar.
   private async loadBooksAvail() {
     const books$ = this.booksService.findAll();
     this.books = await lastValueFrom(books$);
@@ -71,11 +150,19 @@ export class LendingsListComponent implements OnInit {
       }
 
     })
+    
   }
+  //Devuelve dias entre dos fechas
+  getDayDiff(startDate: Date, endDate: Date): number {
+    const msInDay = 24 * 60 * 60 * 1000;
+  
+    // 👇️ explicitly calling getTime()
+    return Math.round(
+      Math.abs(endDate.getTime() - startDate.getTime()) / msInDay,
+    );
+  }  
 
-  returnBook(prestID: number){
-    this.lendingsService.delete(prestID.toString()).subscribe(result => this.refreshList());
-    }
+  
   
     refreshList() {
       this.ngOnInit();
