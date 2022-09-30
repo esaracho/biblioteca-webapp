@@ -1,5 +1,6 @@
 <div class="card my-5">
     <div class="card-body">
+      <h4>Reserve su libro</h4>
         <form (ngSubmit)="onSubmit()" #lendingForm="ngForm">
             <label for="usuario">Elija un usuario:</label>
             <select name="usuario" [(ngModel)]="prestamo.user_id" required="">
@@ -10,14 +11,14 @@
                 <option *ngFor="let book of booksDisp" value={{book.id}}>{{book.id}} | {{book.title}}</option>
               </select><br/>
               <button type="submit" [disabled]="!lendingForm.form.valid" 
-              class="btn btn-info">Submit</button>
+              class="btn btn-info">Reservar</button>
         </form>
     </div>
 </div>
 
 <div class="card my-5">
     <div class="card-body">
-      <h4>Préstamos</h4>
+      <h4>Reportes de préstamos</h4>
       <table class="table table-bordered table-striped">
         <thead class="thead-dark">
           <tr>
@@ -35,7 +36,7 @@
             <td>{{ prest.book_id }}</td>
             <td>{{ prest.date_out}}</td>
             <td>{{ prest.date_return }}</td>
-            <td><a (click)="returnBook(prest.id)" class="btn btn-danger">Devolver</a></td>
+            <td><a (click)="returnBook(prest.id, prest.book_id)" class="btn btn-danger">Devolver</a></td>
           </tr>
         </tbody>
       </table>
