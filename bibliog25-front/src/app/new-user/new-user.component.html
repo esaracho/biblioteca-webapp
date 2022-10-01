@@ -8,19 +8,19 @@
             class="form-control" 
             id="name" 
             name="name" 
-            placeholder="Enter your name"
+            placeholder="Ingrese su Nombre"
             required #title="ngModel">
         </div>
-        <div [hidden]="!title.pristine" class="alert alert-danger">Name is required</div>
+        <div [hidden]="!title.pristine" class="alert alert-danger">Requerid</div>
         <div class="form-group">
           <label for="apellidop">Apellido Paterno</label>
           <input type="text" [(ngModel)]="user.last_name_p" 
             class="form-control" 
             id="apellidop"
             name="apellidop" 
-            placeholder="Enter your email address"
+            placeholder="Ingrese su Apellido Paterno"
             required #date="ngModel">
-          <div [hidden]="!date.pristine" class="alert alert-danger">Email is required</div>
+          <div [hidden]="!date.pristine" class="alert alert-danger">Requerid</div>
         </div>
         <div class="form-group">
             <label for="apellidom">Apellido Materno</label>
@@ -28,19 +28,19 @@
               class="form-control" 
               id="apellidom" 
               name="apellidom" 
-              placeholder="Enter your name"
+              placeholder="Ingrese su Apellido Materno"
               required #author="ngModel">
           </div>
-          <div [hidden]="!author.pristine" class="alert alert-danger">Name is required</div>
+          <div [hidden]="!author.pristine" class="alert alert-danger"> required</div>
           <div class="form-group">
             <label for="domicilio">Domicilio</label>
             <input type="text" [(ngModel)]="user.domicilio" 
               class="form-control" 
               id="domicilio" 
               name="domicilio" 
-              placeholder="Enter your email address"
+              placeholder="Ingrese su Domicilio"
               required #category="ngModel">
-            <div [hidden]="!category.pristine" class="alert alert-danger">Email is required</div>
+            <div [hidden]="!category.pristine" class="alert alert-danger"> required</div>
           </div>
           <div class="form-group">
             <label for="telefono">Teléfono</label>
@@ -48,14 +48,14 @@
               class="form-control" 
               id="telefono" 
               name="telefono" 
-              placeholder="Enter your name"
+              placeholder="Ingrese su telefono"
               required #edit="ngModel">
           </div>
-          <div [hidden]="!edit.pristine" class="alert alert-danger">Name is required</div>
+          <div [hidden]="!edit.pristine" class="alert alert-danger"> required</div>
          
 
         <button type="submit" [disabled]="!userForm.form.valid" 
-          class="btn btn-info">Submit</button>
+          class="btn btn-info">Enviar</button>
       </form>
     </div>
   </div>
