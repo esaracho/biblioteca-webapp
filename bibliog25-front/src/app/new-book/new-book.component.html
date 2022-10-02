@@ -8,19 +8,19 @@
             class="form-control" 
             id="title" 
             name="title" 
-            placeholder="Enter your name"
+            placeholder=" Introduce El Titulo"
             required #title="ngModel">
         </div>
-        <div [hidden]="!title.pristine" class="alert alert-danger">Name is required</div>
+        <div [hidden]="!title.pristine" class="alert alert-danger">Requerido</div>
         <div class="form-group">
           <label for="date">Fecha</label>
           <input type="text" [(ngModel)]="book.date" 
             class="form-control" 
             id="date" 
             name="date" 
-            placeholder="Enter your email address"
+            placeholder="Introduce La Fecha De Ingreso"
             required #date="ngModel">
-          <div [hidden]="!date.pristine" class="alert alert-danger">Email is required</div>
+          <div [hidden]="!date.pristine" class="alert alert-danger">Requerido</div>
         </div>
         <div class="form-group">
             <label for="author">Autor</label>
@@ -28,19 +28,19 @@
               class="form-control" 
               id="author" 
               name="author" 
-              placeholder="Enter your name"
+              placeholder="Introduce El Nombre Del Autor"
               required #author="ngModel">
           </div>
-          <div [hidden]="!author.pristine" class="alert alert-danger">Name is required</div>
+          <div [hidden]="!author.pristine" class="alert alert-danger">Requerido</div>
           <div class="form-group">
             <label for="category">Categoria</label>
             <input type="text" [(ngModel)]="book.category" 
               class="form-control" 
               id="category" 
               name="category" 
-              placeholder="Enter your email address"
+              placeholder="Introduce la Categoria"
               required #category="ngModel">
-            <div [hidden]="!category.pristine" class="alert alert-danger">Email is required</div>
+            <div [hidden]="!category.pristine" class="alert alert-danger">Requerido</div>
           </div>
           <div class="form-group">
             <label for="edit">Editorial</label>
@@ -48,19 +48,19 @@
               class="form-control" 
               id="edit" 
               name="edit" 
-              placeholder="Enter your name"
+              placeholder="Introduce La Editorial"
               required #edit="ngModel">
           </div>
-          <div [hidden]="!edit.pristine" class="alert alert-danger">Name is required</div>
+          <div [hidden]="!edit.pristine" class="alert alert-danger">Requerido</div>
           <div class="form-group">
             <label for="lang">Idioma</label>
             <input type="text" [(ngModel)]="book.lang" 
               class="form-control" 
               id="lang" 
               name="lang" 
-              placeholder="Enter your email address"
+              placeholder="Introduce El Lenguaje"
               required #lang="ngModel">
-            <div [hidden]="!lang.pristine" class="alert alert-danger">Email is required</div>
+            <div [hidden]="!lang.pristine" class="alert alert-danger">Requerido</div>
           </div>
           <div class="form-group">
             <label for="pages">Paginas</label>
@@ -68,19 +68,19 @@
               class="form-control" 
               id="pages" 
               name="pages" 
-              placeholder="Enter your name"
+              placeholder="Introduce La Cantidad De Paginas"
               required #pages="ngModel">
           </div>
-          <div [hidden]="!pages.pristine" class="alert alert-danger">Name is required</div>
+          <div [hidden]="!pages.pristine" class="alert alert-danger">Requerido</div>
           <div class="form-group">
             <label for="description">Descripcion</label>
             <input type="text" [(ngModel)]="book.description" 
               class="form-control" 
               id="description" 
               name="description" 
-              placeholder="Enter your email address"
+              placeholder="Descripcion Del Libro"
               required #description="ngModel">
-            <div [hidden]="!description.pristine" class="alert alert-danger">Email is required</div>
+            <div [hidden]="!description.pristine" class="alert alert-danger">Requerido</div>
           </div>
           <div class="form-group">
             <label for="ejemplares">Ejemplares</label>
@@ -88,19 +88,19 @@
               class="form-control" 
               id="ejemplares" 
               name="ejemplares" 
-              placeholder="Enter your name"
+              placeholder="Introduce La Cantidad De Ejemplares"
               required #ejemplares="ngModel">
           </div>
-          <div [hidden]="!ejemplares.pristine" class="alert alert-danger">Name is required</div>
+          <div [hidden]="!ejemplares.pristine" class="alert alert-danger">Requerido</div>
           <div class="form-group">
             <label for="stock">Stock</label>
             <input type="text" [(ngModel)]="book.stock" 
               class="form-control" 
               id="stock" 
               name="stock" 
-              placeholder="Enter your email address"
+              placeholder="Introduce El Stock"
               required #stock="ngModel">
-            <div [hidden]="!stock.pristine" class="alert alert-danger">Email is required</div>
+            <div [hidden]="!stock.pristine" class="alert alert-danger">Requerido</div>
           </div>
           <div class="form-group">
             <label for="available">Disponibles</label>
@@ -108,13 +108,13 @@
               class="form-control" 
               id="available" 
               name="available" 
-              placeholder="Enter your name"
+              placeholder=""
               required #available="ngModel">
           </div>
 
 
         <button type="submit" [disabled]="!bookForm.form.valid" 
-          class="btn btn-info">Submit</button>
+          class="btn btn-info">Enviar</button>
       </form>
     </div>
   </div>
