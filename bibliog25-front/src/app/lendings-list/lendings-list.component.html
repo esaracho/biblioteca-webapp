@@ -15,7 +15,16 @@
         </form>
     </div>
 </div>
-
+<div class="card my-5">
+  <div class="card-body">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="sancTrue; else noMsg">
+      <strong>Estimado usuario</strong> fue sancionado con {{moneySanc | currency}} por haber devuelto el libro {{difDias}} dias tarde.
+    </div>
+  </div>
+</div>
+<ng-template #noMsg>
+  <p></p>
+</ng-template>
 <div class="card my-5">
     <div class="card-body">
       <h4>Reportes de préstamos</h4>

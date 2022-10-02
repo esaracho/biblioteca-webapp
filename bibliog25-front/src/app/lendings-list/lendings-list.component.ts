@@ -21,6 +21,9 @@ export class LendingsListComponent implements OnInit {
   books!: Books[];
   bookSelect!: Books;
   booksDisp!: Books[];
+  sancTrue!: boolean;
+  difDias!: number;
+  moneySanc!: number;
   //fecha!: Date;
   //fechaRet!: Date;
 
@@ -29,6 +32,7 @@ export class LendingsListComponent implements OnInit {
     private usersService: UsersService, private booksService: BooksService) {
       this.prestamo = new Lendings();
       this.bookSelect = new Books();
+   //   this.sancTrue = false;
    //   this.fecha = new Date();
    //   this.fechaRet = new Date();
      }
@@ -47,7 +51,7 @@ export class LendingsListComponent implements OnInit {
 
   onSubmit() {
     let fechaAct = new Date()
-    this.prestamo.date_out = fechaAct.toString()//this.fecha.toString();
+    this.prestamo.date_out = fechaAct.toString()
     let fechaRet = this.addDays(fechaAct, 15);
     this.prestamo.date_return = fechaRet.toString();
     this.lendingsService.save(this.prestamo).subscribe(result => this.refreshList());
@@ -102,7 +106,7 @@ export class LendingsListComponent implements OnInit {
     return bookRet;
   }
 
-  //Método que verifica la entrega a destiempo, calcula la sanció y lo inserta en la tabla users
+  //Método que verifica la entrega a destiempo, calcula la sanción y lo inserta en la tabla users
   private sanction(idPrest: number){
 
     let prestSel = new Lendings();
@@ -120,16 +124,19 @@ export class LendingsListComponent implements OnInit {
 
     })
 
-    let dateAct = new Date("2022-10-25");
+    let dateAct = new Date();
     let dateRet = new Date(Date.parse(prestSel.date_return.toString()))
-    let difDias = this.getDayDiff(dateRet, dateAct)
+    this.difDias = this.getDayDiff(dateRet, dateAct)
 
-    if(difDias > 0){
+    if(this.difDias > 0){
+      this.sancTrue = true;
       let cost_sanc = 5;
-      let money = cost_sanc * difDias;
-      userSel.sanc_money = userSel.sanc_money + money;
+      this.moneySanc = cost_sanc * this.difDias;
+      userSel.sanc_money = userSel.sanc_money + this.moneySanc;
       userSel.sanctions = userSel.sanctions + 1;
       this.usersService.edit(userSel.id.toString(), userSel).subscribe()
+    } else {
+      this.sancTrue = false;
     }
 
     
