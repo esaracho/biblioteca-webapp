@@ -4,8 +4,8 @@ Práctica de Spring y Angular para el ISPC
 
 ### Contenido del repositorio
 
-- Directorio **bibliog25-api**: Contiene los archivos del backend, se deben importan en Spring boot tools.
-- Directorio **bibliog25-front**: Contiene los archivos del frontend, se deben ejecutar con `ng serve`
+- Directorio **bibliog25-api**: Contiene los archivos del backend, se deben importar en Spring boot tools.
+- Directorio **bibliog25-front**: Contiene los archivos del frontend en Angular, se debe ejecutar con `ng serve`
 - Directorio **db**: Contiene el script sql de la base de datos MySQL.
 - Directorio **ITPLibrary**: Contiene el jar de la aplicación de ecritorio y un script para ejecutarlo (linux)
 - Directorio **Diagramas**: Contiene los diagramas (relacional, casos de uso, etc)
